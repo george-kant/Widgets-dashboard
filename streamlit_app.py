@@ -20,12 +20,12 @@ if st.button("Get Random Fact"):
 
 # Button to get the latest news title
 if st.button("Get Latest News Title"):
-    response = requests.get("https://api.spaceflightnewsapi.net/v4/articles")
+    response = requests.get("https://api.spaceflightnewsapi.net/v4/articles/limit=1")
     if response.status_code == 200:
         # Fetch the latest news article
         news = response.json()
         if len(news) > 0:
-            latest_news_title = news[0]["title"]
+            latest_news_title = news["title"]
             st.write(f"Latest news title: {latest_news_title}")
         else:
             st.write("No news available.")
