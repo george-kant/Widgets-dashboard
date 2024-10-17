@@ -72,8 +72,10 @@ if st.button("Υπολογισμός Θερμίδων"):
         # Υπολογισμός BMR
         if gender == "Άνδρας":
             bmr = 10 * weight + 6.25 * height - 5 * age + 5
+            st.write(bmr)
         else:
             bmr = 10 * weight + 6.25 * height - 5 * age - 161
+            st.write(bmr)
         # Συντελεστής δραστηριότητας
         activity_factors = {
             "Καθιστική ζωή": 1.2,
