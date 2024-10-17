@@ -18,6 +18,21 @@ if st.button("Get Random Fact"):
         st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
 
+# Button to get the latest news title
+if st.button("Get Latest News Title"):
+    response = requests.get("https://api.spaceflightnewsapi.net/v3/articles")
+    if response.status_code == 200:
+        # Fetch the latest news article
+        news = response.json()
+        if len(news) > 0:
+            latest_news_title = news[0]["title"]
+            st.write(f"Latest news title: {latest_news_title}")
+        else:
+            st.write("No news available.")
+    else:
+        st.write(f"Failed to retrieve news. Status code: {response.status_code}")
+
+
 4.# Υπολογιστής ΔΜΣ
 st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (ΔΜΣ)")
 weight = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1)
