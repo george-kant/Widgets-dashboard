@@ -25,8 +25,7 @@ col1, col2, col3 = st.columns(3)
 
 # Random Useless Fact Generator in col1
 with col1:
-    st.markdown('<div class="widget-container">', unsafe_allow_html=True)
-    st.subheader("Random Useless Fact Generator")
+    st.markdown('<div class="widget-container">Random Useless Fact Generator<div>', unsafe_allow_html=True)
     if st.button("Get Random Fact"):
         response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
         if response.status_code == 200:
