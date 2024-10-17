@@ -9,8 +9,7 @@ st.title("🎈 Widgets App Dashboard")
 if response.status_code == 200:
     # Parse the JSON response
     fact = response.json()
-    # Print the fact
-    print(fact["text"])
+    st.write(fact["text"])
 else:
     st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
