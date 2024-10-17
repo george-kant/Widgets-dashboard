@@ -22,40 +22,40 @@ if st.button("Get Random Fact"):
 
 
 # API request to Weatherbit
-# Button to trigger the API call
-if st.button("Get Weather Forecast"):
-    # Create HTTPS connection to Weatherbit API
-    conn = http.client.HTTPSConnection("weatherbit-v1-mashape.p.rapidapi.com")
-
-    # API request headers
-    headers = {
-        'x-rapidapi-key': "477b04cf19msh3b843b62fef3654p184910jsn8f3229ba512f",
-        'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
+if st.button("Get Weather Forecast (Limassol)"):
+    # API endpoint for Open Meteo
+    url = "https://api.open-meteo.com/v1/forecast"
+    
+    # Parameters for Limassol, Cyprus
+    params = {
+        "latitude": 34.68,
+        "longitude": 33.04,
+        "hourly": "temperature_2m,weathercode",
+        "timezone": "Europe/Athens"
     }
-
-    # Make the request with Limassol's latitude and longitude, using metric units
-    conn.request("GET", "/forecast/3hourly?lat=35.5&lon=-78.54&units=metric&lang=en", headers=headers)
-
-    # Get the response from the API
-    res = conn.getresponse()
-    data = res.read()
-
-    # Parse the response as JSON
-    weather_data = json.loads(data)
-
-    # Display the first forecast (next 3 hours)
-    if "data" in weather_data and len(weather_data["data"]) > 0:
-        forecast = weather_data["data"][0]  # Get the first forecast
-        temp = forecast['temp']
-        description = forecast['weather']['description']
-        timestamp = forecast['timestamp_local']
-
-        # Display the weather data
-        st.write(f"Forecast for {timestamp}:")
-        st.write(f"Temperature: {temp}°C")
-        st.write(f"Description: {description}")
+    
+    # Make the request to the Open Meteo API
+    response = requests.get(url, params=params)
+    
+    # Check if the response was successful
+    if response.status_code == 200:
+        # Parse the response JSON
+        weather_data = response.json()
+        
+        # Get the first forecasted hour (next 3-hour data)
+        if "hourly" in weather_data and "temperature_2m" in weather_data["hourly"]:
+            temperatures = weather_data["hourly"]["temperature_2m"]
+            weather_codes = weather_data["hourly"]["weathercode"]
+            time_stamps = weather_data["hourly"]["time"]
+            
+            # Display the first forecast
+            st.write(f"Forecast for {time_stamps[0]}:")
+            st.write(f"Temperature: {temperatures[0]}°C")
+            st.write(f"Weather Code: {weather_codes[0]}")
+        else:
+            st.write("No hourly forecast data available.")
     else:
-        st.write("No forecast data available.")
+        st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
 
 
 4.# Υπολογιστής ΔΜΣ
