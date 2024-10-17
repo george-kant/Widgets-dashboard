@@ -34,7 +34,7 @@ if st.button("Get Weather Forecast"):
     }
 
     # Make the request with Limassol's latitude and longitude, using metric units
-    conn.request("GET", "/forecast/3hourly?lat=34.68&lon=33.04&units=metric&lang=en", headers=headers)
+    conn.request("GET", "/forecast/3hourly?lat=35.5&lon=-78.54&units=metric&lang=en", headers=headers)
 
     # Get the response from the API
     res = conn.getresponse()
