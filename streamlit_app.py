@@ -4,19 +4,6 @@ import requests
 # Full width layout
 st.set_page_config(layout="wide")
 
-# Custom CSS for shadow and border-radius
-st.markdown("""
-    <style>
-    .widget-container {
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 20px;
-        background-color: #f9f9f9;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
 # Main title
 st.title("🎈 Widgets App Dashboard")
 
@@ -25,7 +12,7 @@ col1, col2, col3 = st.columns(3)
 
 # Random Useless Fact Generator in col1
 with col1:
-    st.markdown('<div class="widget-container">Random Useless Fact Generator<div>', unsafe_allow_html=True)
+    st.subheader("Random Useless Fact Generator")
     if st.button("Get Random Fact"):
         response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
         if response.status_code == 200:
@@ -36,7 +23,6 @@ with col1:
 
 # Weather Forecast in col2
 with col2:
-    st.markdown('<div class="widget-container">', unsafe_allow_html=True)
     st.subheader("Weather Forecast (Limassol)")
     if st.button("Get Weather Forecast (Limassol)"):
         url = "https://api.open-meteo.com/v1/forecast"
@@ -55,11 +41,9 @@ with col2:
             st.write(f"Temperature: {temperatures[0]}°C")
         else:
             st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # BMI Calculator in col3
 with col3:
-    st.markdown('<div class="widget-container">', unsafe_allow_html=True)
     st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (ΔΜΣ)")
     weight = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1)
     height = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1)
@@ -79,14 +63,12 @@ with col3:
                 st.write("Έχετε παχυσαρκία.")
         else:
             st.write("Παρακαλώ εισάγετε έγκυρες τιμές για βάρος και ύψος.")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # New row for BMR Calculator
 col4, col5, col6 = st.columns(3)
 
 # BMR Calculator in col5
 with col5:
-    st.markdown('<div class="widget-container">', unsafe_allow_html=True)
     st.subheader("Υπολογιστής Καθημερινών Θερμίδων")
     age = st.number_input("Εισάγετε την ηλικία σας:", min_value=0, step=1)
     gender = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"])
@@ -116,4 +98,3 @@ with col5:
             st.write(f"Πρέπει να καταναλώνετε περίπου {total_calories:.2f} θερμίδες την ημέρα.")
         else:
             st.write("Παρακαλώ συμπληρώστε όλες τις τιμές.")
-    st.markdown('</div>', unsafe_allow_html=True)
