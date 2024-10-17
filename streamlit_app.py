@@ -1,5 +1,8 @@
 import streamlit as st
 import requests
+import json
+import http.client
+
 
 # Send a GET request to the API
 response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
@@ -19,29 +22,40 @@ if st.button("Get Random Fact"):
 
 
 # API request to Weatherbit
-url = "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly"
-
-querystring = {"lat":"34.68","lon":"33.04","units":"metric","lang":"en"} # Limassol
-headers = {
-    'x-rapidapi-key': "477b04cf19msh3b843b62fef3654p184910jsn8f3229ba512f",
-    'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
-}
-# Button to get the weather forecast
+# Button to trigger the API call
 if st.button("Get Weather Forecast"):
-    response = requests.get(url, headers=headers, params=querystring)
-    if response.status_code == 200:
-        data = response.json()
-        # Show the first forecast as an example
-        forecast = data['data'][0]
+    # Create HTTPS connection to Weatherbit API
+    conn = http.client.HTTPSConnection("weatherbit-v1-mashape.p.rapidapi.com")
+
+    # API request headers
+    headers = {
+        'x-rapidapi-key': "477b04cf19msh3b843b62fef3654p184910jsn8f3229ba512f",
+        'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
+    }
+
+    # Make the request with Limassol's latitude and longitude, using metric units
+    conn.request("GET", "/forecast/3hourly?lat=34.68&lon=33.04&units=metric&lang=en", headers=headers)
+
+    # Get the response from the API
+    res = conn.getresponse()
+    data = res.read()
+
+    # Parse the response as JSON
+    weather_data = json.loads(data)
+
+    # Display the first forecast (next 3 hours)
+    if "data" in weather_data and len(weather_data["data"]) > 0:
+        forecast = weather_data["data"][0]  # Get the first forecast
         temp = forecast['temp']
         description = forecast['weather']['description']
         timestamp = forecast['timestamp_local']
-        
+
+        # Display the weather data
         st.write(f"Forecast for {timestamp}:")
-        st.write(f"Temperature: {temp}°F")
+        st.write(f"Temperature: {temp}°C")
         st.write(f"Description: {description}")
     else:
-        st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
+        st.write("No forecast data available.")
 
 
 4.# Υπολογιστής ΔΜΣ
