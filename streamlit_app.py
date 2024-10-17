@@ -33,7 +33,6 @@ with col1:
             st.write(f"Here's your random fact: {fact}")
         else:
             st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # Weather Forecast in col2
 with col2:
