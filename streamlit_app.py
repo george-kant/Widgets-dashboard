@@ -18,19 +18,30 @@ if st.button("Get Random Fact"):
         st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
 
-# Button to get the latest news title
-if st.button("Get Latest News Title"):
-    response = requests.get("https://api.spaceflightnewsapi.net/v4/articles/limit=1")
+# API request to Weatherbit
+url = "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly"
+
+querystring = {"lat":"34.68","lon":"33.04","units":"metric","lang":"en"} # Limassol
+headers = {
+    'x-rapidapi-key': "477b04cf19msh3b843b62fef3654p184910jsn8f3229ba512f",
+    'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com"
+}
+# Button to get the weather forecast
+if st.button("Get Weather Forecast"):
+    response = requests.get(url, headers=headers, params=querystring)
     if response.status_code == 200:
-        # Fetch the latest news article
-        news = response.json()
-        if len(news) > 0:
-            latest_news_title = news["title"]
-            st.write(f"Latest news title: {latest_news_title}")
-        else:
-            st.write("No news available.")
+        data = response.json()
+        # Show the first forecast as an example
+        forecast = data['data'][0]
+        temp = forecast['temp']
+        description = forecast['weather']['description']
+        timestamp = forecast['timestamp_local']
+        
+        st.write(f"Forecast for {timestamp}:")
+        st.write(f"Temperature: {temp}°F")
+        st.write(f"Description: {description}")
     else:
-        st.write(f"Failed to retrieve news. Status code: {response.status_code}")
+        st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
 
 
 4.# Υπολογιστής ΔΜΣ
