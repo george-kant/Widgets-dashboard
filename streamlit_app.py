@@ -6,15 +6,16 @@ response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
 
 st.title("🎈 Widgets App Dashboard")
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Parse the JSON response
-    fact = response.json()
-    st.write(fact["text"])
-else:
-    st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
+st.subheader("Random Useless Fact Generator")
 
-st.write( " George ig For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/).")
+# Button to get the random fact
+if st.button("Get Random Fact"):
+    response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
+    if response.status_code == 200:
+        fact = response.json()["text"]
+        st.write(f"Here's your random fact: {fact}")
+    else:
+        st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
 
 4.# Υπολογιστής ΔΜΣ
