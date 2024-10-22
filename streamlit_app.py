@@ -75,7 +75,7 @@ with col4:
     height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
 
     # Dropdown for optional effects: 'y' for grayscale or 'g' for color
-    option = st.selectbox("Choose image style:", ["g - Color", "y - Grayscale"])
+    option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
     # Button to generate the image
     if st.button("Generate Keanu Image"):
