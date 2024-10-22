@@ -74,7 +74,7 @@ with col4:
     width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1)
     height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
 
-    # Dropdown for optional effects: 'y' for grayscale or 'g' for color
+    # Dropdown for optional effects: 'g' for grayscale or 'y' for young colored
     option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
     # Button to generate the image
@@ -82,11 +82,7 @@ with col4:
         # Determine option from selection
         option_code = option.split(" - ")[0]
         
-        # Build the URL based on the inputs
-        if option_code == "y":  # Grayscale option
-            image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
-        else:  # Color option
-            image_url = f"https://placekeanu.com/{width}/{height}"
+        image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
         
         # Display the image in Streamlit without using column width
         st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", width=width)
