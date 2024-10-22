@@ -9,7 +9,7 @@ def navigate_page(selected_page):
     st.query_params.page=selected_page
     st.rerun()  # This forces the page to reload after clicking the button
 
-current_page = st.query_params.page["Intro"]
+current_page = "Intro"
 
 # Sidebar with button-style navigation
 st.sidebar.title("Navigation")
