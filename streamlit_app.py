@@ -6,11 +6,11 @@ st.set_page_config(layout="wide")
 
 # Function to handle navigation
 def navigate_page(selected_page):
-    st.experimental_set_query_params(page=selected_page)
-    st.experimental_rerun()  # This forces the page to reload after clicking the button
+    st.set_query_params(page=selected_page)
+    st.rerun()  # This forces the page to reload after clicking the button
 
 # Fetch the current page from the query parameters
-query_params = st.experimental_get_query_params()
+query_params = st.get_query_params()
 current_page = query_params.get("page", ["Intro"])[0]
 
 # Sidebar with button-style navigation
