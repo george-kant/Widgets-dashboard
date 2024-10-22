@@ -68,26 +68,28 @@ with col3:
 col4, col5, col6 = st.columns(3)
 
 with col4:
-    # Streamlit app header
     st.subheader("Generate a Keanu Reeves Placeholder Image")
 
     # User inputs for image dimensions
     width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1)
     height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
 
-    # Optional effects input
-    options = st.text_input("Optional effects (e.g., grayscale, blur):", value="")
+    # Dropdown for optional effects: 'y' for grayscale or 'g' for color
+    option = st.selectbox("Choose image style:", ["g - Color", "y - Grayscale"])
 
     # Button to generate the image
     if st.button("Generate Keanu Image"):
+        # Determine option from selection
+        option_code = option.split(" - ")[0]
+        
         # Build the URL based on the inputs
-        if options:
-            image_url = f"https://placekeanu.com/{width}/{height}?{options}"
-        else:
+        if option_code == "y":  # Grayscale option
+            image_url = f"https://placekeanu.com/{width}/{height}?grayscale"
+        else:  # Color option
             image_url = f"https://placekeanu.com/{width}/{height}"
         
-        # Display the image in Streamlit
-        st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", use_column_width=True)
+        # Display the image in Streamlit without using column width
+        st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", width=width)
 
 
 # BMR Calculator in col5
