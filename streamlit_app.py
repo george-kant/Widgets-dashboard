@@ -7,6 +7,7 @@ st.set_page_config(layout="wide")
 # Function to handle navigation
 def navigate_page(selected_page):
     st.experimental_set_query_params(page=selected_page)
+    st.experimental_rerun()  # This forces the page to reload after clicking the button
 
 # Fetch the current page from the query parameters
 query_params = st.experimental_get_query_params()
@@ -33,11 +34,9 @@ if st.sidebar.button("Υπολογισμός Ημερήσιων Θερμίδων
 st.title("1η Εργασία Φοιτητών")
 
 if current_page == "Intro":
-    st.header('1η Εργασία Φοιτητών')
     st.header('Συντάκτες:')
     st.write('Ανδρέας Χρίστου',"                     ","**ΑΦΤ:**", "15182")
     st.write('Γιώργος Καντιάνης',"                     ","**ΑΦΤ:**", "32833")
-
 
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
@@ -85,13 +84,13 @@ elif current_page == "Weather Forecast":
 
 elif current_page == "BMI Calculator":
     st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (BMI)")
-    weight = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1)
-    height = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1)
+    weight_bmi = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
+    height_bmi = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
 
     if st.button("Υπολογισμός BMI"):
-        if weight > 0 and height > 0:
-            height_m = height / 100
-            bmi = weight / (height_m ** 2)
+        if weight_bmi > 0 and height_bmi > 0:
+            height_m_bmi = height_bmi / 100  # Μετατροπή ύψους σε μέτρα
+            bmi = weight_bmi / (height_m_bmi ** 2)  # Υπολογισμός ΔΜΣ
             st.write(f"To BMI σας είναι: {bmi:.2f}")
             if bmi < 18.5:
                 st.write("Είστε λιποβαρής.")
@@ -106,28 +105,34 @@ elif current_page == "BMI Calculator":
 
 elif current_page == "BMR Calculator":
     st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
-    age = st.slider("Εισάγετε την ηλικία σας:", 1, 100)
-    gender = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"])
+    weight_bmr = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
+    height_bmr = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
+    age_bmr = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
+    gender_bmr = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
 
     if st.button("Υπολογισμός BMR"):
-        if weight > 0 and height > 0 and age > 0:
-            if gender == "Άνδρας":
-                bmr = 10 * weight + 6.25 * height - 5 * age + 5
+        if weight_bmr > 0 and height_bmr > 0 and age_bmr > 0:
+            if gender_bmr == "Άνδρας":
+                bmr = 10 * weight_bmr + 6.25 * height_bmr - 5 * age_bmr + 5
             else:
-                bmr = 10 * weight + 6.25 * height - 5 * age - 161
-            st.write(f"Το BMR σας είναι: {bmr:.2f}")
+                bmr = 10 * weight_bmr + 6.25 * height_bmr - 5 * age_bmr - 161
+            st.write(f"H ενέργεια που καταναλώνει το σώμα σας σε ηρεμία: {bmr:.2f} θερμίδες.")
         else:
-            st.write("Παρακαλώ συμπληρώστε όλες τις τιμές.")
+            st.write("Παρακαλώ εισάγετε έγκυρες τιμές.")
 
 elif current_page == "TDEE Calculator":
     st.subheader("Υπολογισμός Ημερήσιων Θερμίδων (TDEE)")
-    activity_level = st.selectbox("Επίπεδο δραστηριότητας:", [
+    weight_tdee = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
+    height_tdee = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
+    age_tdee = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
+    gender_tdee = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
+    activity_level_tdee = st.selectbox("Επίπεδο δραστηριότητας:", [
         "Καθιστική ζωή",
         "Ελαφριά δραστηριότητα",
         "Μέτρια δραστηριότητα",
         "Υψηλή δραστηριότητα",
         "Πολύ υψηλή δραστηριότητα"
-    ])
+    ], key="tdee_activity")
 
     activity_factors = {
         "Καθιστική ζωή": 1.2,
@@ -138,12 +143,12 @@ elif current_page == "TDEE Calculator":
     }
 
     if st.button("Υπολογισμός TDEE"):
-        if weight > 0 and height > 0 and age > 0:
-            if gender == "Άνδρας":
-                bmr = 10 * weight + 6.25 * height - 5 * age + 5
+        if weight_tdee > 0 and height_tdee > 0 and age_tdee > 0:
+            if gender_tdee == "Άνδρας":
+                bmr_tdee = 10 * weight_tdee + 6.25 * height_tdee - 5 * age_tdee + 5
             else:
-                bmr = 10 * weight + 6.25 * height - 5 * age - 161
-            total_calories = bmr * activity_factors[activity_level]
+                bmr_tdee = 10 * weight_tdee + 6.25 * height_tdee - 5 * age_tdee - 161
+            total_calories = bmr_tdee * activity_factors[activity_level_tdee]
             st.write(f"Πρέπει να καταναλώνετε περίπου {total_calories:.2f} θερμίδες την ημέρα.")
         else:
-            st.write("Παρακαλώ συμπληρώστε όλες τις τιμές.")
+            st.write("Παρακαλώ εισάγετε έγκυρες τιμές για βάρος, ύψος και ηλικία.")
