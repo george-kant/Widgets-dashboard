@@ -1,28 +1,48 @@
 import streamlit as st
 import requests
 
-# Set up the page layout with a sidebar
+# Full width layout
 st.set_page_config(layout="wide")
 
-# Sidebar with navigation tabs
+# Function to handle navigation
+def navigate_page(selected_page):
+    st.experimental_set_query_params(page=selected_page)
+
+# Fetch the current page from the query parameters
+query_params = st.experimental_get_query_params()
+current_page = query_params.get("page", ["Intro"])[0]
+
+# Sidebar with button-style navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", [
-    "Intro",
-    "Random Useless Fact Generator",
-    "Keanu Reeves Placeholder Image",
-    "Weather Forecast (Limassol)",
-    "Υπολογιστής ΔΜΣ (BMI)",
-    "Υπολογιστής Μεταβολισμού (BMR)",
-    "Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"
-])
+if st.sidebar.button("Intro"):
+    navigate_page("Intro")
+if st.sidebar.button("Random Useless Fact"):
+    navigate_page("Random Useless Fact")
+if st.sidebar.button("Keanu Reeves Placeholder Image"):
+    navigate_page("Keanu Reeves Placeholder Image")
+if st.sidebar.button("Weather Forecast"):
+    navigate_page("Weather Forecast")
+if st.sidebar.button("Υπολογιστής ΔΜΣ"):
+    navigate_page("BMI Calculator")
+if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
+    navigate_page("BMR Calculator")
+if st.sidebar.button("Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"):
+    navigate_page("TDEE Calculator")
 
-# Tab 1: Intro Page
-if page == "Intro":
-    st.title("🎈 Welcome to the Widgets App Dashboard")
-    st.write("Use the sidebar to navigate between different widgets!")
+# Displaying the selected page
+st.title("1η Εργασία Φοιτητών")
 
-# Tab 2: Random Useless Fact Generator
-if page == "Random Useless Fact Generator":
+if current_page == "Intro":
+    st.header('1η Εργασία Φοιτητών')
+    st.header('Συντάκτες:')
+    st.write('Ανδρέας Χρίστου',"                     ","**ΑΦΤ:**", "15182")
+    st.write('Γιώργος Καντιάνης',"                     ","**ΑΦΤ:**", "32833")
+
+
+    st.header('Μάθημα:')
+    st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
+
+elif current_page == "Random Useless Fact":
     st.subheader("Random Useless Fact Generator")
     if st.button("Get Random Fact"):
         response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
@@ -32,25 +52,18 @@ if page == "Random Useless Fact Generator":
         else:
             st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
-# Tab 3: Keanu Reeves Placeholder Image
-if page == "Keanu Reeves Placeholder Image":
+elif current_page == "Keanu Reeves Placeholder Image":
     st.subheader("Generate a Keanu Reeves Placeholder Image")
+    width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1)
+    height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
+    option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
-    # User inputs for image dimensions
-    width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1, key="keanu_width")
-    height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1, key="keanu_height")
-
-    # Dropdown for optional effects: 'g' for grayscale or 'y' for young colored
-    option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"], key="keanu_option")
-
-    # Button to generate the image
     if st.button("Generate Keanu Image"):
         option_code = option.split(" - ")[0]
         image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
         st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", width=width)
 
-# Tab 4: Weather Forecast (Limassol)
-if page == "Weather Forecast (Limassol)":
+elif current_page == "Weather Forecast":
     st.subheader("Weather Forecast (Limassol)")
     if st.button("Get Weather Forecast (Limassol)"):
         url = "https://api.open-meteo.com/v1/forecast"
@@ -70,16 +83,15 @@ if page == "Weather Forecast (Limassol)":
         else:
             st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
 
-# Tab 5: Υπολογιστής ΔΜΣ (BMI)
-if page == "Υπολογιστής ΔΜΣ (BMI)":
+elif current_page == "BMI Calculator":
     st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (BMI)")
-    weight_bmi = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
-    height_bmi = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
+    weight = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1)
+    height = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1)
 
     if st.button("Υπολογισμός BMI"):
-        if weight_bmi > 0 and height_bmi > 0:
-            height_m_bmi = height_bmi / 100  # Μετατροπή ύψους σε μέτρα
-            bmi = weight_bmi / (height_m_bmi ** 2)  # Υπολογισμός ΔΜΣ
+        if weight > 0 and height > 0:
+            height_m = height / 100
+            bmi = weight / (height_m ** 2)
             st.write(f"To BMI σας είναι: {bmi:.2f}")
             if bmi < 18.5:
                 st.write("Είστε λιποβαρής.")
@@ -92,38 +104,30 @@ if page == "Υπολογιστής ΔΜΣ (BMI)":
         else:
             st.write("Παρακαλώ εισάγετε έγκυρες τιμές για βάρος και ύψος.")
 
-# Tab 6: Υπολογιστής Μεταβολισμού (BMR)
-if page == "Υπολογιστής Μεταβολισμού (BMR)":
+elif current_page == "BMR Calculator":
     st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
-    weight_bmr = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
-    height_bmr = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
-    age_bmr = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
-    gender_bmr = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
+    age = st.slider("Εισάγετε την ηλικία σας:", 1, 100)
+    gender = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"])
 
     if st.button("Υπολογισμός BMR"):
-        if weight_bmr > 0 and height_bmr > 0 and age_bmr > 0:
-            if gender_bmr == "Άνδρας":
-                bmr = 10 * weight_bmr + 6.25 * height_bmr - 5 * age_bmr + 5
+        if weight > 0 and height > 0 and age > 0:
+            if gender == "Άνδρας":
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5
             else:
-                bmr = 10 * weight_bmr + 6.25 * height_bmr - 5 * age_bmr - 161
-            st.write(f"H ενέργεια που καταναλώνει το σώμα σας σε ηρεμία: {bmr:.2f} θερμίδες.")
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161
+            st.write(f"Το BMR σας είναι: {bmr:.2f}")
         else:
-            st.write("Παρακαλώ εισάγετε έγκυρες τιμές.")
+            st.write("Παρακαλώ συμπληρώστε όλες τις τιμές.")
 
-# Tab 7: Υπολογισμός Ημερήσιων Θερμίδων (TDEE)
-if page == "Υπολογισμός Ημερήσιων Θερμίδων (TDEE)":
+elif current_page == "TDEE Calculator":
     st.subheader("Υπολογισμός Ημερήσιων Θερμίδων (TDEE)")
-    weight_tdee = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
-    height_tdee = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
-    age_tdee = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
-    gender_tdee = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
-    activity_level_tdee = st.selectbox("Επίπεδο δραστηριότητας:", [
+    activity_level = st.selectbox("Επίπεδο δραστηριότητας:", [
         "Καθιστική ζωή",
         "Ελαφριά δραστηριότητα",
         "Μέτρια δραστηριότητα",
         "Υψηλή δραστηριότητα",
         "Πολύ υψηλή δραστηριότητα"
-    ], key="tdee_activity")
+    ])
 
     activity_factors = {
         "Καθιστική ζωή": 1.2,
@@ -134,12 +138,12 @@ if page == "Υπολογισμός Ημερήσιων Θερμίδων (TDEE)":
     }
 
     if st.button("Υπολογισμός TDEE"):
-        if weight_tdee > 0 and height_tdee > 0 and age_tdee > 0:
-            if gender_tdee == "Άνδρας":
-                bmr_tdee = 10 * weight_tdee + 6.25 * height_tdee - 5 * age_tdee + 5
+        if weight > 0 and height > 0 and age > 0:
+            if gender == "Άνδρας":
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5
             else:
-                bmr_tdee = 10 * weight_tdee + 6.25 * height_tdee - 5 * age_tdee - 161
-            total_calories = bmr_tdee * activity_factors[activity_level_tdee]
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161
+            total_calories = bmr * activity_factors[activity_level]
             st.write(f"Πρέπει να καταναλώνετε περίπου {total_calories:.2f} θερμίδες την ημέρα.")
         else:
-            st.write("Παρακαλώ εισάγετε έγκυρες τιμές για βάρος, ύψος και ηλικία.")
+            st.write("Παρακαλώ συμπληρώστε όλες τις τιμές.")
