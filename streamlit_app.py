@@ -84,7 +84,7 @@ with col4:
         
         # Build the URL based on the inputs
         if option_code == "y":  # Grayscale option
-            image_url = f"https://placekeanu.com/{width}/{height}?grayscale"
+            image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
         else:  # Color option
             image_url = f"https://placekeanu.com/{width}/{height}"
         
