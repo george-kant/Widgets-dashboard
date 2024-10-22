@@ -6,7 +6,10 @@ st.set_page_config(layout="wide")
 
 # Function to handle navigation
 def navigate_page(selected_page):
-    st.query_params.page=selected_page
+    if(selected_page):
+        st.query_params.page=selected_page
+    else:
+        st.query_params.page="Intro"
     st.rerun()  # This forces the page to reload after clicking the button
 
 current_page = st.query_params.page
