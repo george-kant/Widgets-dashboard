@@ -14,7 +14,7 @@ current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
 st.sidebar.title("Πληροφορίες:")
-if st.sidebar.button("Intro")
+if st.sidebar.button("Intro"):
     navigate_page("Intro")
 st.sidebar.title("Αυτόματα:")
 if st.sidebar.button("Random Useless Fact"):
