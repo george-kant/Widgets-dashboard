@@ -19,9 +19,9 @@ if st.sidebar.button("Intro"):
 st.sidebar.title("Αυτόματα:")
 if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
-if st.sidebar.button(":camera:Keanu Reeves Placeholder Image"):
+if st.sidebar.button("Keanu Reeves Placeholder Image"):
     navigate_page("Keanu Reeves Placeholder Image")
-if st.sidebar.button(":sunrise:Weather Forecast"):
+if st.sidebar.button("Weather Forecast"):
     navigate_page("Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button("Υπολογιστής ΔΜΣ"):
