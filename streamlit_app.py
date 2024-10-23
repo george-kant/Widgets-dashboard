@@ -16,14 +16,14 @@ current_page = st.query_params.get("page", "Intro")
 st.sidebar.title(":small_blue_diamond:Πληροφορίες:")
 if st.sidebar.button(" :blue[**Intro**]"):
     navigate_page("Intro")
-st.sidebar.title("Αυτόματα:")
+st.sidebar.title(":small_blue_diamond:Αυτόματα:")
 if st.sidebar.button(" :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(" :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(" :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
-st.sidebar.title("Κατασκευασμένα:")
+st.sidebar.title(":small_blue_diamond:Κατασκευασμένα:")
 if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
     navigate_page("BMI Calculator")
 if st.sidebar.button(" :blue[**Υπολογιστής Μεταβολισμού (BMR)**]"):
