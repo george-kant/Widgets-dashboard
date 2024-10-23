@@ -13,15 +13,15 @@ if "page" not in st.query_params:
 current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
-st.sidebar.title(":small_blue_diamond:Πληροφορίες:")
-if st.sidebar.button(" :blue[**Intro**]"):
+st.sidebar.title(":pushpin:Πληροφορίες:")
+if st.sidebar.button(":information_source: :blue[**Intro**]"):
     navigate_page("Intro")
 st.sidebar.title(":small_blue_diamond:Αυτόματα:")
-if st.sidebar.button(" :blue[**Random Useless Fact**]"):
+if st.sidebar.button(":thought_balloon: :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
-if st.sidebar.button(" :blue[**Keanu Reeves Placeholder Image**]"):
+if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
-if st.sidebar.button(" :blue[**Weather Forecast**]"):
+if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
 st.sidebar.title(":small_blue_diamond:Κατασκευασμένα:")
 if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
