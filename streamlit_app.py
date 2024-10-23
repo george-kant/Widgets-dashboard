@@ -21,7 +21,7 @@ if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(":camera:Keanu Reeves Placeholder Image"):
     navigate_page("Keanu Reeves Placeholder Image")
-if st.sidebar.button(":sunriseWeather Forecast"):
+if st.sidebar.button(":sunrise:Weather Forecast"):
     navigate_page("Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button("Υπολογιστής ΔΜΣ"):
@@ -38,7 +38,7 @@ if current_page == "Intro":
     st.header('Συντάκτες:')
     st.write('Ανδρέας Χρίστου',"                     ","**ΑΦΤ:**", "15182")
     st.write('Γιώργος Καντιάνης',"                     ","**ΑΦΤ:**", "32833")
-st.writer("dd")
+st.writer("d")
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
   
