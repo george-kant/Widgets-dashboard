@@ -89,7 +89,7 @@ elif current_page == "BMI Calculator":
     if st.button("Υπολογισμός BMI"):
         if weight_bmi > 0 and height_bmi > 0:
             height_m_bmi = height_bmi / 100  # Μετατροπή ύψους σε μέτρα
-            bmi = weight_bmi / (height_m_bmi ** 2)  # ΔΜΣ
+            bmi = weight_bmi / (height_m_bmi ** 2)  # ΔΜΣs
             st.write(f"To BMI σας είναι: {bmi:.2f}")
             if bmi < 18.5:
                 st.write("Είστε λιποβαρής.")
