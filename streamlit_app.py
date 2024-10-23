@@ -24,11 +24,11 @@ if st.sidebar.button("Keanu Reeves Placeholder Image"):
 if st.sidebar.button("Weather Forecast"):
     navigate_page("Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
-if st.sidebar.button("Υπολογιστής ΔΜΣ"):
+if st.sidebar.button(":muscle:Υπολογιστής ΔΜΣ"):
     navigate_page("BMI Calculator")
 if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
     navigate_page("BMR Calculator")
-if st.sidebar.button(":muscle:Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"):
+if st.sidebar.button(":knife_fork_plate:Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"):
     navigate_page("TDEE Calculator")
 
 # Displaying the selected page
