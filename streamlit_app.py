@@ -20,9 +20,9 @@ st.sidebar.title("Αυτόματα:")
 if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button("Keanu Reeves Placeholder Image"):
-    navigate_page("Keanu Reeves Placeholder Image")
+    navigate_page(":camera:Keanu Reeves Placeholder Image")
 if st.sidebar.button("Weather Forecast"):
-    navigate_page("Weather Forecast")
+    navigate_page(":sunrise:Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button("Υπολογιστής ΔΜΣ"):
     navigate_page("BMI Calculator")
@@ -41,8 +41,7 @@ if current_page == "Intro":
 
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
-    st.write("Test")
-
+  
 elif current_page == "Random Useless Fact":
     st.subheader("Random Useless Fact Generator")
     if st.button("Get Random Fact"):
@@ -85,7 +84,7 @@ elif current_page == "Weather Forecast":
             st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
 
 elif current_page == "BMI Calculator":
-    st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (BMI):muscle:")
+    st.subheader(":muscle:Υπολογιστής Δείκτη Μάζας Σώματος (BMI)")
     
     weight_bmi = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
     height_bmi = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
@@ -124,7 +123,7 @@ elif current_page == "BMR Calculator":
             st.write(":loudspeaker:Παρακαλώ εισάγετε έγκυρες τιμές.")
 
 elif current_page == "TDEE Calculator":
-    st.subheader("Υπολογισμός Ημερήσιων Θερμίδων (TDEE):knife_fork_plate:")
+    st.subheader(":knife_fork_plate:Υπολογισμός Ημερήσιων Θερμίδων (TDEE)")
     weight_tdee = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
     height_tdee = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
     age_tdee = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
