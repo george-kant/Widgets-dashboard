@@ -106,6 +106,7 @@ elif current_page == "BMI Calculator":
 
 elif current_page == "BMR Calculator":
     st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
+    st.subheader("Υπολογιστής Μεταβολισμού (Btd)")
     weight_bmr = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
     height_bmr = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
     age_bmr = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
