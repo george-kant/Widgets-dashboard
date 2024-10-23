@@ -28,7 +28,7 @@ if st.sidebar.button("Υπολογιστής ΔΜΣ"):
     navigate_page("BMI Calculator")
 if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
     navigate_page("BMR Calculator")
-if st.sidebar.button("Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"):
+if st.sidebar.button(":muscle:Υπολογισμός Ημερήσιων Θερμίδων (TDEE)"):
     navigate_page("TDEE Calculator")
 
 # Displaying the selected page
