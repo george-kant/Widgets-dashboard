@@ -13,6 +13,7 @@ if "page" not in st.query_params:
 current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
+st.siderbar.title("1η Εργασία Φοιτητών")
 st.sidebar.title(":pushpin:Πληροφορίες:")
 if st.sidebar.button(":information_source: :blue[**Intro**]"):
     navigate_page("Intro")
@@ -55,9 +56,9 @@ elif current_page == "Random Useless Fact":
 
 elif current_page == "Keanu Reeves Placeholder Image":
     st.subheader("Generate a Keanu Reeves Placeholder Image")
-    width = st.number_input(":small_blue_diamond:Enter the width of the image:", min_value=1, value=300, step=1)
-    height = st.number_input(":small_blue_diamond:Enter the height of the image:", min_value=1, value=300, step=1)
-    option = st.selectbox(":small_blue_diamond:Choose image style:", ["g - Grayscale", "y - Young Colored"])
+    width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1)
+    height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
+    option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
     if st.button("Generate Keanu Image"):
         option_code = option.split(" - ")[0]
