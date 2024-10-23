@@ -13,7 +13,7 @@ if "page" not in st.query_params:
 current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
-st.sidebar.title(":large_blue_circle:Πληροφορίες:")
+st.sidebar.title(":arrow_down_small:Πληροφορίες:")
 if st.sidebar.button(" :blue[**Intro**]"):
     navigate_page("Intro")
 st.sidebar.title("Αυτόματα:")
