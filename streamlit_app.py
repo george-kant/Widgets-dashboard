@@ -39,6 +39,7 @@ if current_page == "Intro":
 
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
+    st.write("Test")
 
 elif current_page == "Random Useless Fact":
     st.subheader("Random Useless Fact Generator")
