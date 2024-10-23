@@ -19,7 +19,7 @@ if st.sidebar.button(" :blue[**Intro**]"):
 st.sidebar.title("Αυτόματα:")
 if st.sidebar.button(" :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
-if st.sidebar.button(" :blue[**Keanu Reeves Placeholder Image"):
+if st.sidebar.button(" :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(" :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
