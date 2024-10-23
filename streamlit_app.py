@@ -108,8 +108,8 @@ elif current_page == "BMR Calculator":
     st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
     weight_bmr = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
     height_bmr = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
-    age_bmr = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
-    gender_bmr = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
+    age_bmr = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
+    gender_bmr = st.selectbox(":small_blue_diamond:Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
 
     if st.button(":blue[Υπολογισμός BMR]"):
         if weight_bmr > 0 and height_bmr > 0 and age_bmr > 0:
@@ -123,11 +123,11 @@ elif current_page == "BMR Calculator":
 
 elif current_page == "TDEE Calculator":
     st.subheader("Υπολογισμός Ημερήσιων Θερμίδων (TDEE):knife_fork_plate:")
-    weight_tdee = st.number_input("Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
-    height_tdee = st.number_input("Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
-    age_tdee = st.slider("Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
-    gender_tdee = st.selectbox("Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
-    activity_level_tdee = st.selectbox("Επίπεδο δραστηριότητας:", [
+    weight_tdee = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
+    height_tdee = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
+    age_tdee = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
+    gender_tdee = st.selectbox(":small_blue_diamond:Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
+    activity_level_tdee = st.selectbox(":small_blue_diamond:Επίπεδο δραστηριότητας:", [
         "Καθιστική ζωή",
         "Ελαφριά δραστηριότητα",
         "Μέτρια δραστηριότητα",
