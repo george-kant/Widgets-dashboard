@@ -24,7 +24,7 @@ if st.sidebar.button("Keanu Reeves Placeholder Image"):
 if st.sidebar.button("Weather Forecast"):
     navigate_page("Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
-if st.sidebar.button(":muscle:Υπολογιστής ΔΜΣ"):
+if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
     navigate_page("BMI Calculator")
 if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
     navigate_page("BMR Calculator")
@@ -36,7 +36,7 @@ st.title("1η Εργασία Φοιτητών")
 
 if current_page == "Intro":
     st.header('Συντάκτες:')
-    st.write("Ανδρέας Χρίστου                         **ΑΦΤ:** 15182")
+    st.write("Ανδρέας Χρίστου  **ΑΦΤ:** 15182")
     st.write('Γιώργος Καντιάνης',"                     ","**ΑΦΤ:**", "32833")
     st.write("d")
 
