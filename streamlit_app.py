@@ -84,6 +84,7 @@ elif current_page == "Weather Forecast":
 
 elif current_page == "BMI Calculator":
     st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (BMI):muscle:")
+    st.subheader("Υπολογιστής Δείκτη Μάζας Σώματος (tgn)")
     weight_bmi = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
     height_bmi = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
 
