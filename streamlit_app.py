@@ -24,9 +24,9 @@ if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Imag
 if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
 st.sidebar.title(":pushpin:Κατασκευασμένα:")
-if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
+if st.sidebar.button(":muscle: :blue[**Υπολογιστής (BMI)**]"):
     navigate_page("BMI Calculator")
-if st.sidebar.button(" :blue[**Υπολογιστής Μεταβολισμού (BMR)**]"):
+if st.sidebar.button(":runner: :blue[**Υπολογιστής Μεταβολισμού (BMR)**]"):
     navigate_page("BMR Calculator")
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
