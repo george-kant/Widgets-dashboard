@@ -14,19 +14,19 @@ current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
 st.sidebar.title("Πληροφορίες:")
-if st.sidebar.button("Intro"):
+if st.sidebar.button(" :blue[**Intro**]"):
     navigate_page("Intro")
 st.sidebar.title("Αυτόματα:")
-if st.sidebar.button("Random Useless Fact"):
+if st.sidebar.button(" :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
-if st.sidebar.button("Keanu Reeves Placeholder Image"):
+if st.sidebar.button(" :blue[**Keanu Reeves Placeholder Image"):
     navigate_page("Keanu Reeves Placeholder Image")
-if st.sidebar.button("Weather Forecast"):
+if st.sidebar.button(" :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
 st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
     navigate_page("BMI Calculator")
-if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
+if st.sidebar.button(" :blue[**Υπολογιστής Μεταβολισμού (BMR)"):
     navigate_page("BMR Calculator")
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
