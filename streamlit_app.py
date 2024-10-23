@@ -13,17 +13,17 @@ if "page" not in st.query_params:
 current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
-st.sidebar.title("Πληροφορίες")
+st.sidebar.title("Πληροφορίες:")
 if st.sidebar.button("Intro"):
     navigate_page("Intro")
-st.sidebar.title("Αυτόματα")
+st.sidebar.title("Αυτόματα:")
 if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button("Keanu Reeves Placeholder Image"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button("Weather Forecast"):
     navigate_page("Weather Forecast")
-st.sidebar.title("Κατασκευασμένα")
+st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button("Υπολογιστής ΔΜΣ"):
     navigate_page("BMI Calculator")
 if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
@@ -108,7 +108,6 @@ elif current_page == "BMI Calculator":
 
 elif current_page == "BMR Calculator":
     st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
-    st.subheader("Υπολογιστής Μεταβολισμού (Btd)")
     weight_bmr = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
     height_bmr = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
     age_bmr = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
