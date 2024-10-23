@@ -16,6 +16,7 @@ current_page = st.query_params.get("page", "Intro")
 st.sidebar.title("Navigation")
 if st.sidebar.button("Intro"):
     navigate_page("Intro")
+st.sidebar.title("κατασκευασμενα")
 if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button("Keanu Reeves Placeholder Image"):
