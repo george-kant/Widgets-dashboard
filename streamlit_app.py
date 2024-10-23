@@ -13,16 +13,17 @@ if "page" not in st.query_params:
 current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
-st.sidebar.title("Navigation")
+st.sidebar.title("Πληροφορίες")
 if st.sidebar.button("Intro"):
     navigate_page("Intro")
-st.sidebar.title("κατασκευασμενα")
+st.sidebar.title("Αυτόματα")
 if st.sidebar.button("Random Useless Fact"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button("Keanu Reeves Placeholder Image"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button("Weather Forecast"):
     navigate_page("Weather Forecast")
+st.sidebar.title("Κατασκευασμένα")
 if st.sidebar.button("Υπολογιστής ΔΜΣ"):
     navigate_page("BMI Calculator")
 if st.sidebar.button("Υπολογιστής Μεταβολισμού (BMR)"):
