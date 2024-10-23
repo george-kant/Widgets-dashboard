@@ -26,7 +26,7 @@ if st.sidebar.button(" :blue[**Weather Forecast**]"):
 st.sidebar.title("Κατασκευασμένα:")
 if st.sidebar.button(":muscle: :blue[**Υπολογιστής ΔΜΣ**]"):
     navigate_page("BMI Calculator")
-if st.sidebar.button(" :blue[**Υπολογιστής Μεταβολισμού (BMR)"):
+if st.sidebar.button(" :blue[**Υπολογιστής Μεταβολισμού (BMR)**]"):
     navigate_page("BMR Calculator")
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
