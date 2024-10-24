@@ -21,7 +21,7 @@ current_page = st.query_params.get("page", "Intro")
 st.sidebar.title("**1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ**")
 if st.sidebar.button(":information_source: :blue[**Πληροφορίες**]"):
     navigate_page("Intro")
-st.sidebar.title(":pushpin:Public APIs:")
+st.sidebar.title(":pushpin: **Public APIs:**")
 if st.sidebar.button(":thought_balloon: :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Image**]"):
