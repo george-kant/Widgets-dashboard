@@ -19,20 +19,19 @@ current_page = st.query_params.get("page", "Intro")
 
 # Sidebar with button-style navigation
 st.sidebar.title("**1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ**")
-st.sidebar.title(":pushpin:Πληροφορίες:")
-if st.sidebar.button(":information_source: :blue[**Intro**]"):
+if st.sidebar.button(":information_source: :blue[**Πληροφορίες**]"):
     navigate_page("Intro")
-st.sidebar.title(":pushpin:Αυτόματα:")
+st.sidebar.title(":pushpin:Public APIs:")
 if st.sidebar.button(":thought_balloon: :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
-st.sidebar.title(":pushpin:Κατασκευασμένα:")
-if st.sidebar.button(":muscle: :blue[**Υπολογιστής (BMI)**]"):
+st.sidebar.title(":pushpin:Custom:")
+if st.sidebar.button(":muscle: :blue[**ΥπολογισμόςΔείκτη Μάζας Σώματος (BMI)**]"):
     navigate_page("BMI Calculator")
-if st.sidebar.button(":runner: :blue[**Υπολογιστής Μεταβολισμού (BMR)**]"):
+if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισμού (BMR)**]"):
     navigate_page("BMR Calculator")
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
@@ -90,7 +89,7 @@ elif current_page == "Weather Forecast":
             st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
 
 elif current_page == "BMI Calculator":
-    st.subheader(":muscle:Υπολογιστής Δείκτη Μάζας Σώματος (BMI)")
+    st.subheader(":muscle:Υπολογισμός Δείκτη Μάζας Σώματος (BMI)")
     
     weight_bmi = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
     height_bmi = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
@@ -112,7 +111,7 @@ elif current_page == "BMI Calculator":
             st.write(":loudspeaker:Παρακαλώ εισάγετε έγκυρες τιμές για βάρος και ύψος.")
 
 elif current_page == "BMR Calculator":
-    st.subheader("Υπολογιστής Μεταβολισμού (BMR)")
+    st.subheader("Υπολογισμός Μεταβολισμού (BMR)")
     weight_bmr = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
     height_bmr = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
     age_bmr = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
