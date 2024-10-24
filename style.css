@@ -1,3 +1,11 @@
+.stApp {
+    background-color: #fffef2;
+}
+
 .stApp>header {
     background-color: transparent;
+}
+
+.stApp .stSidebar {
+    background-color: #d2dcdd;
 }
