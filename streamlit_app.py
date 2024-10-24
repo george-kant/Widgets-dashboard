@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 
+st.set_page_config(page_title="1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ")
+
 with open('style.css') as f:
     css = f.read()
     
@@ -36,10 +38,8 @@ if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισ
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
 
-# Content for each page
-st.title("1η Εργασία Φοιτητών")
-
 if current_page == "Intro":
+    st.title("1η Εργασία Φοιτητών")
     st.header('Συντάκτες:')
     st.write("Ανδρέας Χρίστου   **ΑΦΤ:** 15182")
     st.write("Γιώργος Καντιάνης **ΑΦΤ:** 32833")
