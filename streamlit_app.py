@@ -12,6 +12,62 @@ if "page" not in st.query_params:
 
 current_page = st.query_params.get("page", "Intro")
 
+# Define CSS styles for different pages
+page_styles = {
+    "Intro": """
+        <style>
+        .stApp {
+            background-color: #f0f0f0;
+        }
+        </style>
+    """,
+    "Random Useless Fact": """
+        <style>
+        .stApp {
+            background-color: #e6f7ff;
+        }
+        </style>
+    """,
+    "Keanu Reeves Placeholder Image": """
+        <style>
+        .stApp {
+            background-color: #fff0f0;
+        }
+        </style>
+    """,
+    "Weather Forecast": """
+        <style>
+        .stApp {
+            background-color: #f2ffe6;
+        }
+        </style>
+    """,
+    "BMI Calculator": """
+        <style>
+        .stApp {
+            background-color: #f2f2f2;
+        }
+        </style>
+    """,
+    "BMR Calculator": """
+        <style>
+        .stApp {
+            background-color: #e6e6ff;
+        }
+        </style>
+    """,
+    "TDEE Calculator": """
+        <style>
+        .stApp {
+            background-color: #fffde6;
+        }
+        </style>
+    """
+}
+
+# Apply the background style for the current page
+st.markdown(page_styles.get(current_page, ""), unsafe_allow_html=True)
+
 # Sidebar with button-style navigation
 st.sidebar.title("**1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ**")
 st.sidebar.title(":pushpin:Πληροφορίες:")
@@ -32,14 +88,13 @@ if st.sidebar.button(":runner: :blue[**Υπολογιστής Μεταβολισ
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
 
-# Displaying the selected page
+# Content for each page
 st.title("1η Εργασία Φοιτητών")
 
 if current_page == "Intro":
     st.header('Συντάκτες:')
-    st.write("Ανδρέας Χρίστου  **ΑΦΤ:** 15182")
-    st.write('Γιώργος Καντιάνης',"                     ","**ΑΦΤ:**", "32833")
-    st.write("A3")
+    st.write("Ανδρέας Χρίστου   **ΑΦΤ:** 15182")
+    st.write("Γιώργος Καντιάνης **ΑΦΤ:** 32833")
 
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
