@@ -1,23 +1,23 @@
 import streamlit as st
 import requests
 
+# Αρχείο styling
 with open('style.css') as f:
     css = f.read()
     
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
-# Function to handle navigation
+# Παράμετρος για ανανεώση καρτέλας
 def navigate_page(selected_page):
     st.query_params["page"] = selected_page
-    st.rerun()  # This forces the page to reload after clicking the button
+    st.rerun()
 
-# Set default page to "Intro" if no page is selected
 if "page" not in st.query_params:
     st.query_params["page"] = "Intro"
 
 current_page = st.query_params.get("page", "Intro")
 
-# Sidebar with button-style navigation
+# Sidebar
 st.sidebar.title("**1η Εργασία Φοιτητών**")
 if st.sidebar.button(":information_source: :blue[**Πληροφορίες**]"):
     navigate_page("Intro")
@@ -36,6 +36,10 @@ if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισ
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
 
+
+# Περιεχόμενο Καρτελών
+
+# Εισαγωγή
 if current_page == "Intro":
     st.title("1η Εργασία Φοιτητών")
     st.header('Συντάκτες:')
@@ -47,8 +51,10 @@ if current_page == "Intro":
     
     st.header("Διδάσκων:")
     st.write( "Δρ. Ανδρέας Χριστοφόρου")
-  
+
+# Public APIs
 elif current_page == "Random Useless Fact":
+    # Εμφάνιση τυχαίου fact απο το uselessfacts.jsph.pl API
     st.subheader(":thought_balloon: Random Useless Fact Generator")
     if st.button("Get Random Fact"):
         response = requests.get("https://uselessfacts.jsph.pl/api/v2/facts/random")
@@ -56,20 +62,25 @@ elif current_page == "Random Useless Fact":
             fact = response.json()["text"]
             st.write(f"Here's your random fact: {fact}")
         else:
-            st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
+            st.write(f":loudspeaker: Failed to retrieve fact. Status code: {response.status_code}")
 
 elif current_page == "Keanu Reeves Placeholder Image":
+    # Δημιουργία εικόνας σε custom διαστάσεις από το placekeanu.com API
     st.subheader(":frame_with_picture: Generate a Keanu Reeves Placeholder Image")
     width = st.number_input(":small_blue_diamond: Enter the width of the image:", min_value=1, value=300, step=1)
     height = st.number_input(":small_blue_diamond: Enter the height of the image:", min_value=1, value=300, step=1)
     option = st.selectbox(" :small_blue_diamond: Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
     if st.button("Generate Keanu Image"):
-        option_code = option.split(" - ")[0]
-        image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
-        st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", width=width)
+        if width > 0 and height > 0:
+            option_code = option.split(" - ")[0]
+            image_url = f"https://placekeanu.com/{width}/{height}/{option_code}"
+            st.image(image_url, caption=f"Keanu Reeves ({width}x{height})", width=width)
+        else:
+            st.write(":loudspeaker: Please insert valid width and height.")
 
 elif current_page == "Weather Forecast":
+    # Πρόγνωση καιρού για Λεμεσό από το open-meteo.com API
     st.subheader(":sunny: Weather Forecast (Limassol)")
     if st.button("Get Weather Forecast (Limassol)"):
         url = "https://api.open-meteo.com/v1/forecast"
@@ -87,19 +98,21 @@ elif current_page == "Weather Forecast":
             st.write(f"Forecast for {time_stamps[0]}:")
             st.write(f"Temperature: {temperatures[0]}°C")
         else:
-            st.write(f"Failed to retrieve weather data. Status code: {response.status_code}")
+            st.write(f":loudspeaker: Failed to retrieve weather data. Status code: {response.status_code}")
 
+
+# Custom widgets
 elif current_page == "BMI Calculator":
     st.subheader(":muscle: Υπολογισμός Δείκτη Μάζας Σώματος (BMI)")
     
-    weight_bmi = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
-    height_bmi = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
+    weight_bmi = st.number_input(":small_blue_diamond: Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmi_weight")
+    height_bmi = st.number_input(":small_blue_diamond: Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmi_height")
 
     if st.button(":blue[Υπολογισμός BMI]"):
         if weight_bmi > 0 and height_bmi > 0:
-            height_m_bmi = height_bmi / 100  # Μετατροπή ύψους σε μέτρα
-            bmi = weight_bmi / (height_m_bmi ** 2)  # ΔΜΣ
-            st.write(f"To BMI σας είναι: {bmi:.2f}")
+            height_m_bmi = height_bmi / 100 
+            bmi = weight_bmi / (height_m_bmi ** 2)
+            st.write(f"Ο δείκτης μάζας σώματος σας είναι: {bmi:.2f}")
             if bmi < 18.5:
                 st.write("Είστε λιποβαρής.")
             elif bmi < 24.9:
@@ -109,14 +122,14 @@ elif current_page == "BMI Calculator":
             else:
                 st.write("Έχετε παχυσαρκία.")
         else:
-            st.write(":loudspeaker:Παρακαλώ εισάγετε έγκυρες τιμές για βάρος και ύψος.")
+            st.write(":loudspeaker: Παρακαλώ εισάγετε έγκυρες τιμές για βάρος και ύψος.")
 
 elif current_page == "BMR Calculator":
     st.subheader(":runner: Υπολογισμός Μεταβολισμού (BMR)")
-    weight_bmr = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
-    height_bmr = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
-    age_bmr = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
-    gender_bmr = st.selectbox(":small_blue_diamond:Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
+    weight_bmr = st.number_input(":small_blue_diamond: Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="bmr_weight")
+    height_bmr = st.number_input(":small_blue_diamond: Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="bmr_height")
+    age_bmr = st.slider(":small_blue_diamond: Εισάγετε την ηλικία σας:", 1, 100, key="bmr_age")
+    gender_bmr = st.selectbox(":small_blue_diamond: Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="bmr_gender")
 
     if st.button(":blue[Υπολογισμός BMR]"):
         if weight_bmr > 0 and height_bmr > 0 and age_bmr > 0:
@@ -126,15 +139,15 @@ elif current_page == "BMR Calculator":
                 bmr = 10 * weight_bmr + 6.25 * height_bmr - 5 * age_bmr - 161
             st.write(f"H ενέργεια που καταναλώνει το σώμα σας σε ηρεμία: {bmr:.2f} θερμίδες.")
         else:
-            st.write(":loudspeaker:Παρακαλώ εισάγετε έγκυρες τιμές.")
+            st.write(":loudspeaker: Παρακαλώ εισάγετε έγκυρες τιμές.")
 
 elif current_page == "TDEE Calculator":
-    st.subheader(":knife_fork_plate:Υπολογισμός Ημερήσιων Θερμίδων (TDEE)")
-    weight_tdee = st.number_input(":small_blue_diamond:Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
-    height_tdee = st.number_input(":small_blue_diamond:Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
-    age_tdee = st.slider(":small_blue_diamond:Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
-    gender_tdee = st.selectbox(":small_blue_diamond:Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
-    activity_level_tdee = st.selectbox(":small_blue_diamond:Επίπεδο δραστηριότητας:", [
+    st.subheader(":knife_fork_plate: Υπολογισμός Ημερήσιων Θερμίδων (TDEE)")
+    weight_tdee = st.number_input(":small_blue_diamond: Εισάγετε το βάρος σας σε κιλά:", min_value=0.0, step=0.1, key="tdee_weight")
+    height_tdee = st.number_input(":small_blue_diamond: Εισάγετε το ύψος σας σε εκατοστά:", min_value=0.0, step=0.1, key="tdee_height")
+    age_tdee = st.slider(":small_blue_diamond: Εισάγετε την ηλικία σας:", 1, 100, key="tdee_age")
+    gender_tdee = st.selectbox(":small_blue_diamond: Επιλέξτε το φύλο σας:", ["Άνδρας", "Γυναίκα"], key="tdee_gender")
+    activity_level_tdee = st.selectbox(":small_blue_diamond: Επίπεδο δραστηριότητας:", [
         "Καθιστική ζωή",
         "Ελαφριά δραστηριότητα",
         "Μέτρια δραστηριότητα",
