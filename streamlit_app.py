@@ -44,6 +44,9 @@ if current_page == "Intro":
 
     st.header('Μάθημα:')
     st.write("CEI521 Προχωρημένα Θέματα Τεχνολογίας Λογισμικού")
+    
+    st.header("Διδάσκων:")
+    st.write( "Δρ. Ανδρέας Χριστοφόρου")
   
 elif current_page == "Random Useless Fact":
     st.subheader(":thought_balloon: Random Useless Fact Generator")
