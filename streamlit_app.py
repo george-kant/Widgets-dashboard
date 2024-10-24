@@ -1,8 +1,6 @@
 import streamlit as st
 import requests
 
-st.set_page_config(page_title="1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ")
-
 with open('style.css') as f:
     css = f.read()
     
@@ -23,14 +21,14 @@ current_page = st.query_params.get("page", "Intro")
 st.sidebar.title("**1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ**")
 if st.sidebar.button(":information_source: :blue[**Πληροφορίες**]"):
     navigate_page("Intro")
-st.sidebar.title(":pushpin: **Public APIs:**")
+st.sidebar.title(":pushpin:Public APIs:")
 if st.sidebar.button(":thought_balloon: :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
-st.sidebar.title(":pushpin: **Custom:**")
+st.sidebar.title(":pushpin:Custom:")
 if st.sidebar.button(":muscle: :blue[**ΥπολογισμόςΔείκτη Μάζας Σώματος (BMI)**]"):
     navigate_page("BMI Calculator")
 if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισμού (BMR)**]"):
@@ -38,10 +36,12 @@ if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισ
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
 
+# Content for each page
+st.title("1η Εργασία Φοιτητών")
+
 if current_page == "Intro":
-    st.title("1η Εργασία Φοιτητών")
     st.header('Συντάκτες:')
-    st.write("Ανδρέας Χρίστου   **ΑΦΤ:** 15182")
+    st.write("Ανδρέας Χρίστου   **ΑΦΤ:** 1518")
     st.write("Γιώργος Καντιάνης **ΑΦΤ:** 32833")
 
     st.header('Μάθημα:')
@@ -58,10 +58,10 @@ elif current_page == "Random Useless Fact":
             st.write(f"Failed to retrieve fact. Status code: {response.status_code}")
 
 elif current_page == "Keanu Reeves Placeholder Image":
-    st.subheader("Generate a Keanu Reeves Placeholder Image")
-    width = st.number_input("Enter the width of the image:", min_value=1, value=300, step=1)
-    height = st.number_input("Enter the height of the image:", min_value=1, value=300, step=1)
-    option = st.selectbox("Choose image style:", ["g - Grayscale", "y - Young Colored"])
+    st.subheader(":frame_with_picture: Generate a Keanu Reeves Placeholder Image")
+    width = st.number_input(" Enter the width of the image:", min_value=1, value=300, step=1)
+    height = st.number_input(" Enter the height of the image:", min_value=1, value=300, step=1)
+    option = st.selectbox(" Choose image style:", ["g - Grayscale", "y - Young Colored"])
 
     if st.button("Generate Keanu Image"):
         option_code = option.split(" - ")[0]
