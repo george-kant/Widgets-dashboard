@@ -21,14 +21,14 @@ current_page = st.query_params.get("page", "Intro")
 st.sidebar.title("**1η ΕΡΓΑΣΙΑ ΦΟΙΤΗΤΩΝ**")
 if st.sidebar.button(":information_source: :blue[**Πληροφορίες**]"):
     navigate_page("Intro")
-st.sidebar.title(":pushpin:Public APIs:")
+st.sidebar.title(":pushpin: **Public APIs:**")
 if st.sidebar.button(":thought_balloon: :blue[**Random Useless Fact**]"):
     navigate_page("Random Useless Fact")
 if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Image**]"):
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
-st.sidebar.title(":pushpin:Custom:")
+st.sidebar.title(":pushpin: **Custom:**")
 if st.sidebar.button(":muscle: :blue[**ΥπολογισμόςΔείκτη Μάζας Σώματος (BMI)**]"):
     navigate_page("BMI Calculator")
 if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισμού (BMR)**]"):
@@ -36,10 +36,8 @@ if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισ
 if st.sidebar.button(":knife_fork_plate: :blue[**Υπολογισμός Ημερήσιων Θερμίδων (TDEE)**]"):
     navigate_page("TDEE Calculator")
 
-# Content for each page
-st.title("1η Εργασία Φοιτητών")
-
 if current_page == "Intro":
+    st.title("1η Εργασία Φοιτητών")
     st.header('Συντάκτες:')
     st.write("Ανδρέας Χρίστου   **ΑΦΤ:** 1518")
     st.write("Γιώργος Καντιάνης **ΑΦΤ:** 32833")
