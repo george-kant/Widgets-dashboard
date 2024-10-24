@@ -28,7 +28,7 @@ if st.sidebar.button(":frame_with_picture: :blue[**Keanu Reeves Placeholder Imag
     navigate_page("Keanu Reeves Placeholder Image")
 if st.sidebar.button(":sunny: :blue[**Weather Forecast**]"):
     navigate_page("Weather Forecast")
-st.sidebar.title(":pushpin:Custom:")
+st.sidebar.title(":pushpin: **Custom:**")
 if st.sidebar.button(":muscle: :blue[**ΥπολογισμόςΔείκτη Μάζας Σώματος (BMI)**]"):
     navigate_page("BMI Calculator")
 if st.sidebar.button(":runner: :blue[**Υπολογισμός Μεταβολισμού (BMR)**]"):
