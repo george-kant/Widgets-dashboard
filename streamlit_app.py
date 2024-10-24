@@ -1,9 +1,11 @@
 import streamlit as st
 import requests
 
-with open('./style.css') as f:
+with open('style.css') as f:
     css = f.read()
     
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
 # Function to handle navigation
 def navigate_page(selected_page):
     st.query_params["page"] = selected_page
@@ -14,8 +16,6 @@ if "page" not in st.query_params:
     st.query_params["page"] = "Intro"
 
 current_page = st.query_params.get("page", "Intro")
-
-
 
 # Define CSS styles for different pages
 page_styles = {
